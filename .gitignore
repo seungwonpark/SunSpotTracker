@@ -1,3 +1,6 @@
+# Sun image files from NASA - http://sdo.gsfc.nasa.gov/data/aiahmi/ - HMI Intensitygram(gray)
+images/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
