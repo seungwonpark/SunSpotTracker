@@ -55,10 +55,11 @@ def updatefig(*args):
             if(f[i,j] < criterion):
                 results.append([i, j, num])
     
-    im = plt.imshow(f, animated = True)
+    #im = plt.imshow(f, animated = True)
+    im = plt.figure()
     return im,
 
 ani = animation.FuncAnimation(fig, updatefig, interval=50, blit = True, save_count = 0)
 plt.show()
-#a = np.asarray(results)
-#np.savetxt('results.csv', a, delimiter=',')
+a = np.asarray(results)
+np.savetxt('results.csv', a, delimiter=',')
