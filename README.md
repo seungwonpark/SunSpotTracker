@@ -1,3 +1,3 @@
-# SunSpotTracker
+# SunSpotTracker(WIP)
 
-Tracking tool based on python
+Sunspots tracking tool based on python
