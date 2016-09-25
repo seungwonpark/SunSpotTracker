@@ -4,6 +4,7 @@ import scipy.ndimage
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+from datetime import date
 
 height = 1024
 width = 1024
@@ -17,8 +18,27 @@ criterion = 40 # sunspot criterion
 
 filelist = os.listdir('images/')
 
+initial_date = date(1980,1,1) # Not related with any other julian day stuff!
+def filename_to_hour(filename):
+    # Only difference between two time will be collected with this function, so initial_date doesn't matter.
+    fileinfo = filename.split('_')
+    date_int = int(fileinfo[0]) # 20160901
+    time_int = int(fileinfo[1]) # 131039
+    
+    year = int(date_int / 10000)
+    month = int( (date_int % 10000) / 100)
+    day = date_int % 100
+    hour = int(time_int / 10000)
+    minute = int ( (time_int % 10000) / 100)
+    second = time_int % 100
+    delta = date(year, month, day) - initial_date
+    return delta.days * 24 + hour + (minute / 60) + (second / 3600)
+
 # Initialize data saving
+day = []
 results = []
+
+# Calculation of latitude and longtitude of sunspot on sun
 def latitude(x):
     return math.asin( (halfheight - x) / radius_real )
 def longtitude(x,y):
@@ -30,6 +50,9 @@ plt.ion()
 for num in range(0,len(filelist)):
     print ('Parsing ' + 'images/' + filelist[num] + '...')
     f = scipy.ndimage.imread( 'images/' + filelist[num] )
+    day.append(filename_to_hour(filelist[num]))
+    time = day[num] - day[0] # Elapsed time since first picture
+    
     # Remove dark background
     X, Y = np.ogrid[0:height, 0:width]
     boundary = (X - halfheight) ** 2 + (Y - halfwidth) ** 2 > radius_real ** 2
@@ -45,7 +68,7 @@ for num in range(0,len(filelist)):
     for i in range(0, height):
         for j in range(0, width):
             if(f[i,j] < criterion):
-                results.append([latitude(i), longtitude(i,j), num])
+                results.append([time, latitude(i), longtitude(i,j)])
     
     # Plot image
     plt.imshow(f)
