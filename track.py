@@ -1,3 +1,4 @@
+# Based on Python 3.5.2 | Anaconda 4.1.1
 import math
 import os
 import scipy.ndimage
