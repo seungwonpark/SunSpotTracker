@@ -72,6 +72,9 @@ for num in range(0,len(filelist)):
                 results.append([time, latitude(i), longtitude(i,j)])
     
     # Plot image
+    plt.title(filelist[num])
+    plt.xlabel('X coordinates')
+    plt.ylabel('Y coordinates')
     plt.imshow(f)
     plt.show()
     plt.pause(0.0001)
