@@ -1,4 +1,4 @@
-# SunSpotTracker(WIP)
+# SunSpotTracker
 
 Sunspots tracking tool based on python.
 
@@ -20,5 +20,9 @@ Time, latitude, and longtitude will be written in `results.csv`.
 + Example : `python track.py 20160129 20160203 4`
 
 This will save images from [NASA Solar Dynamics Observatory](http://sdo.gsfc.nasa.gov) to `images/` directory. You can also select minimum time gap between images.
+
+Please refer to [Data Rights and Rules for Data Use](http://sdo.gsfc.nasa.gov/data/rules.php) and attribute as :
+
+> "Courtesy of NASA/SDO and the AIA, EVE, and HMI science teams."
 
 **Caution** : Time gap between downloaded images are **not identical** to the `hourgap` you typed. `hourgap` is just a minimum time gap between images.
