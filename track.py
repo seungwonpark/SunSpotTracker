@@ -6,6 +6,9 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 from datetime import date
+from sys import argv
+script, bool_plot = argv # Input : whether or not to plot(show) the images
+
 
 height = 1024
 width = 1024
@@ -38,6 +41,7 @@ def filename_to_hour(filename):
 # Initialize data saving
 day = []
 results = []
+savefile = open('results/results' + filelist[0] + '_' + filelist[len(filelist)-1] + '.csv', 'a') # append
 
 # Calculation of latitude and longtitude of sunspot on sun
 def latitude(x):
@@ -46,7 +50,8 @@ def longtitude(x,y):
     return math.asin( (y - halfwidth) / (radius_real * math.cos(latitude(x))) )
 
 # Initialize plotting
-plt.ion()
+if(bool_plot == 1):
+    plt.ion()
 
 for num in range(0,len(filelist)):
     print ('Parsing ' + 'images/' + filelist[num] + '...')
@@ -69,16 +74,17 @@ for num in range(0,len(filelist)):
     for i in range(0, height):
         for j in range(0, width):
             if(f[i,j] < criterion):
-                results.append([time, latitude(i), longtitude(i,j)])
-    
-    # Plot image
-    plt.title(filelist[num])
-    plt.xlabel('X coordinates')
-    plt.ylabel('Y coordinates')
-    plt.imshow(f)
-    plt.show()
-    plt.pause(0.0001)
+                savefile.write(str(time) + ',' + str(latitude(i)) + ',' + str(longtitude(i,j)) + '\n')
+    if(bool_plot == 1):
+        # Plot image
+        plt.title(filelist[num])
+        plt.xlabel('X coordinates')
+        plt.ylabel('Y coordinates')
+        plt.imshow(f)
+        plt.show()
+        plt.pause(0.0001)
 
-plt.close()
-a = np.asarray(results)
-np.savetxt('results.csv', a, delimiter=',')
+if(bool_plot == 1):
+    plt.close()
+
+savefile.close()
