@@ -53,6 +53,10 @@ def longtitude(x,y):
 if(bool_plot == 1):
     plt.ion()
 
+# Initialize dark background removal
+X, Y = np.ogrid[0:height, 0:width]
+boundary = (X - halfheight) ** 2 + (Y - halfwidth) ** 2 > radius_real ** 2
+
 for num in range(0,len(filelist)):
     print ('Parsing ' + 'images/' + filelist[num] + '...')
     f = scipy.ndimage.imread( 'images/' + filelist[num] )
@@ -60,8 +64,6 @@ for num in range(0,len(filelist)):
     time = day[num] - day[0] # Elapsed time since first picture
     
     # Remove dark background
-    X, Y = np.ogrid[0:height, 0:width]
-    boundary = (X - halfheight) ** 2 + (Y - halfwidth) ** 2 > radius_real ** 2
     f[boundary] = 255
     
     # Center line : vertical / horizontal
