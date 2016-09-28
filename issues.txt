@@ -1,0 +1,12 @@
+Issues about images :
+Error classfication - not fully downloaded - A, image(s) is(are) rotated - B.
+
+20130122_171125_1024_HMII.jpg : A
+20131003_000910_1024_HMII.jpg, 20131002_200910_1024_HMII.jpg : B
+from 20130407_061040_1024_HMII.jpg to 20130409_141040_1024_HMII.jpg : B
+20130403_061040_1024_HMII.jpg : B
+
+20140409_060525_1024_HMII.jpg, 20140409_100955_1024_HMII.jpg : B
+20140420_200525_1024_HMII.jpg : A
+
+....etc
