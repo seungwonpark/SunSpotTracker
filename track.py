@@ -43,10 +43,10 @@ day = []
 results = []
 savefile = open('results/results' + filelist[0] + '_' + filelist[len(filelist)-1] + '.csv', 'a') # append
 
-# Calculation of latitude and longtitude of sunspot on sun
+# Calculation of latitude and longitude of sunspot on sun
 def latitude(x):
     return math.asin( (halfheight - x) / radius_real )
-def longtitude(x,y):
+def longitude(x,y):
     return math.asin( (y - halfwidth) / (radius_real * math.cos(latitude(x))) )
 
 # Initialize plotting
@@ -76,7 +76,7 @@ for num in range(0,len(filelist)):
     for i in range(0, height):
         for j in range(0, width):
             if(f[i,j] < criterion):
-                savefile.write(str(time) + ',' + str(latitude(i)) + ',' + str(longtitude(i,j)) + '\n')
+                savefile.write(str(time) + ',' + str(latitude(i)) + ',' + str(longitude(i,j)) + '\n')
     if(bool_plot == 1):
         # Plot image
         plt.title(filelist[num])
