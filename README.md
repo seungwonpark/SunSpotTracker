@@ -10,7 +10,7 @@ Sunspots tracking tool based on python.
 + If you don't want to use plot utility, then `python track.py 0`.
 + Ignore the matplotlib DeprecationError.
 
-Time, latitude, and longtitude will be written in `results.csv`.
+Time, latitude, and longitude will be written in `results.csv`.
 
 
 
