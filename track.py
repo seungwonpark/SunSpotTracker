@@ -7,7 +7,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from datetime import date
 from sys import argv
-script, bool_plot = argv # Input : whether or not to plot(show) the images
+script, bool_plot, bool_raw = argv # Input : whether or not to plot(show) the images
 
 
 height = 1024
@@ -41,7 +41,10 @@ def filename_to_hour(filename):
 # Initialize data saving
 day = []
 results = []
-savefile = open('results/results' + filelist[0] + '_' + filelist[len(filelist)-1] + '.csv', 'a') # append
+if(bool_raw == 0):
+    savefile = open('results/results_' + filelist[0] + '_' + filelist[len(filelist)-1] + '.csv', 'a') # append
+else:
+    savefile = open('results/results-raw_' + filelist[0] + '_' + filelist[len(filelist)-1] + '.csv', 'a') # append
 
 # Calculation of latitude and longtitude of sunspot on sun
 def latitude(x):
@@ -76,7 +79,10 @@ for num in range(0,len(filelist)):
     for i in range(0, height):
         for j in range(0, width):
             if(f[i,j] < criterion):
-                savefile.write(str(time) + ',' + str(latitude(i)) + ',' + str(longtitude(i,j)) + '\n')
+                if(bool_raw == 0):
+                    savefile.write(str(time) + ',' + str(latitude(i)) + ',' + str(longtitude(i,j)) + '\n')
+                else:
+                    savefile.write(str(time) + ',' + str(i) + ',' + str(j) + '\n')
     if(bool_plot == 1):
         # Plot image
         plt.title(filelist[num])
