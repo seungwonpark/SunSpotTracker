@@ -46,10 +46,10 @@ if(bool_raw == 0):
 else:
     savefile = open('results/results-raw_' + filelist[0] + '_' + filelist[len(filelist)-1] + '.csv', 'a') # append
 
-# Calculation of latitude and longtitude of sunspot on sun
+# Calculation of latitude and longitude of sunspot on sun
 def latitude(x):
     return math.asin( (halfheight - x) / radius_real )
-def longtitude(x,y):
+def longitude(x,y):
     return math.asin( (y - halfwidth) / (radius_real * math.cos(latitude(x))) )
 
 # Initialize plotting
@@ -80,7 +80,7 @@ for num in range(0,len(filelist)):
         for j in range(0, width):
             if(f[i,j] < criterion):
                 if(bool_raw == 0):
-                    savefile.write(str(time) + ',' + str(latitude(i)) + ',' + str(longtitude(i,j)) + '\n')
+                    savefile.write(str(time) + ',' + str(latitude(i)) + ',' + str(longitude(i,j)) + '\n')
                 else:
                     savefile.write(str(time) + ',' + str(i) + ',' + str(j) + '\n')
     if(bool_plot == 1):

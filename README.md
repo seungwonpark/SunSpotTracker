@@ -11,7 +11,7 @@ Sunspots tracking tool based on python.
 + If you want to parse data as raw coordinates, tehn `python track.py 0 1`.
 + Ignore the matplotlib DeprecationError.
 
-Time, latitude, and longtitude will be written in `results.csv`.
+Time, latitude, and longitude will be written in `results.csv`.
 
 
 
