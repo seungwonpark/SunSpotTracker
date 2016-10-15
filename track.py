@@ -62,6 +62,10 @@ if(bool_plot == 1):
 X, Y = np.ogrid[0:height, 0:width]
 boundary = (X - halfheight) ** 2 + (Y - halfwidth) ** 2 > radius_real ** 2
 
+# Print software information
+print('This is SunSpotTracker. (c) Seungwon Park under the terms of the MIT License')
+print('Source : https://github.com/seungwonpark/SunSpotTracker')
+print('')
 # Print selected options
 if(bool_plot == 1):
     print('Plotting : Enabled.')
