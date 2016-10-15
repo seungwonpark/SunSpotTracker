@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 from datetime import date
 from sys import argv
 script, bool_plot, bool_raw = argv # Input : whether or not to plot(show) the images
+bool_plot = int(bool_plot)
+bool_raw = int(bool_raw)
 
 
 height = 1024
@@ -60,6 +62,17 @@ if(bool_plot == 1):
 X, Y = np.ogrid[0:height, 0:width]
 boundary = (X - halfheight) ** 2 + (Y - halfwidth) ** 2 > radius_real ** 2
 
+# Print selected options
+if(bool_plot == 1):
+    print('Plotting : Enabled.')
+else:
+    print('Plotting : Disabled.')
+if(bool_raw == 1):
+    print('RAWdata : Enabled.')
+else:
+    print('RAWdata : Disabled.')
+
+# Track
 for num in range(0,len(filelist)):
     print ('Parsing ' + 'images/' + filelist[num] + '...')
     f = scipy.ndimage.imread( 'images/' + filelist[num] )
