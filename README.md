@@ -6,7 +6,7 @@ Sunspots tracking tool based on python.
 
 + Based on Python 3.5.2.
 + Requires scipy, numpy, and matplotlib. I recommend to use [Anaconda](https://www.continuum.io/downloads).
-+ Usage : `python track.py 1`
++ Recommended default usage : `python track.py 1 0`
 + If you don't want to use plot utility, then `python track.py 0 0`.
 + If you want to parse data as raw coordinates, tehn `python track.py 0 1`.
 + Ignore the matplotlib DeprecationError.
