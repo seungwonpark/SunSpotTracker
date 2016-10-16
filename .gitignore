@@ -2,6 +2,10 @@
 images/
 database/
 
+# Rawdata(coordinates) processing(selection) via depth first search
+rawdata_to_select/
+rawdata_selected/
+
 # Results
 results/
 
