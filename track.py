@@ -1,4 +1,26 @@
 # Based on Python 3.5.2 | Anaconda 4.1.1
+
+# Print software information
+print('This is SunSpotTracker. (c) Seungwon Park under the terms of the MIT License')
+print('Source : https://github.com/seungwonpark/SunSpotTracker')
+
+from sys import argv
+script, bool_plot, bool_raw = argv # Input : whether or not to plot(show) the images
+bool_plot = int(bool_plot)
+bool_raw = int(bool_raw)
+
+# Print selected options
+if(bool_plot == 1):
+    print('Plotting : Enabled.')
+else:
+    print('Plotting : Disabled.')
+if(bool_raw == 1):
+    print('RAWdata : Enabled.')
+else:
+    print('RAWdata : Disabled.')
+
+print('Loading Libraries...')
+
 import math
 import os
 import scipy.ndimage
@@ -6,10 +28,6 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 from datetime import date
-from sys import argv
-script, bool_plot, bool_raw = argv # Input : whether or not to plot(show) the images
-bool_plot = int(bool_plot)
-bool_raw = int(bool_raw)
 
 
 height = 1024
@@ -61,20 +79,6 @@ if(bool_plot == 1):
 # Initialize dark background removal
 X, Y = np.ogrid[0:height, 0:width]
 boundary = (X - halfheight) ** 2 + (Y - halfwidth) ** 2 > radius_real ** 2
-
-# Print software information
-print('This is SunSpotTracker. (c) Seungwon Park under the terms of the MIT License')
-print('Source : https://github.com/seungwonpark/SunSpotTracker')
-print('')
-# Print selected options
-if(bool_plot == 1):
-    print('Plotting : Enabled.')
-else:
-    print('Plotting : Disabled.')
-if(bool_raw == 1):
-    print('RAWdata : Enabled.')
-else:
-    print('RAWdata : Disabled.')
 
 # Track
 for num in range(0,len(filelist)):
