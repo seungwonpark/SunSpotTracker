@@ -2,6 +2,7 @@
 # csv format : image_num, image_time, x, y, intensity
 import os
 import csv
+import math
 
 rawdata_dir = 'rawdata_to_select/'
 selected_dir = 'selected/'
@@ -12,7 +13,20 @@ zerorow = []
 image = []
 size = 1024
 
-previous_row = 0
+height = 1024
+width = 1024
+# radius_cut is used for removing dark background - so as to classify sunspots.
+radius_cut = 440 # cutting radius
+# real radius of sun - used for calculation.
+radius_real = 460
+halfheight = int(height/2)
+halfwidth = int(width/2)
+
+# Calculation of latitude and longitude of sunspot on sun
+def latitude(x):
+    return math.asin( (halfheight - x) / radius_real )
+def longitude(x,y):
+    return math.asin( (y - halfwidth) / (radius_real * math.cos(latitude(x))) )
 
 # DFS range. Need to determine this taxi radius.
 dx = [0,1,1,1,0,-1,-1,-1]
@@ -41,6 +55,7 @@ def dfs(x,y): # DFS(Depth First Search)
 for num in range(0,len(filelist)): # process all files in rawdata_dir
     print ('Processing ' + filelist[num] + '...')
     f = open(rawdata_dir + filelist[num], 'r')
+    result_raw = open(selected_dir + 'selected-raw_' + filelist[0], 'w')
     result = open(selected_dir + 'selected_' + filelist[0], 'w')
     csvReader = csv.reader(f)
     for row in csvReader:
@@ -81,4 +96,10 @@ for num in range(0,len(filelist)): # process all files in rawdata_dir
                     y_pixel_sum = 0
                     num_pixel = 0
                     dfs(a,b)
-                    result.write(str(image_num) + ',' + str(current_time) + ',' + str(format(x_pixel_sum / num_pixel, '.1f')) + ',' + str(format(y_pixel_sum / num_pixel, '.1f')) + '\n')
+                    x_average = x_pixel_sum / num_pixel
+                    y_average = y_pixel_sum / num_pixel
+                    latit = latitude(x_average)
+                    longi = longitude(x_average, y_average)
+                    
+                    result_raw.write(str(image_num) + ',' + str(current_time) + ',' + str(format(x_average, '.1f')) + ',' + str(format(y_average, '.1f')) + '\n')
+                    result.write(str(image_num) + ',' + str(current_time) + ',' + str(format(latit, '.1f')) + ',' + str(format(longi, '.1f')) + '\n')
