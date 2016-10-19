@@ -24,7 +24,7 @@ num_pixel = 0
 
 total_num_of_row = 0
 
-def f(x,y): # DFS(Depth First Search)
+def dfs(x,y): # DFS(Depth First Search)
     global x_pixel_sum
     global y_pixel_sum
     global num_pixel
@@ -34,7 +34,7 @@ def f(x,y): # DFS(Depth First Search)
     num_pixel += 1
     for i in range(0,8):
         if(image[x+dx[i]][y+dy[i]] == 1):
-            f(x+dx[i],y+dy[i])
+            dfs(x+dx[i],y+dy[i])
     
     
 for num in range(0,len(filelist)): # process all files in rawdata_dir
@@ -65,6 +65,7 @@ for num in range(0,len(filelist)): # process all files in rawdata_dir
         for i in range(0,size):
             image.append(zerorow)
         while(int(rawdata[num_row][0]) == image_num):
+            current_time = int(rawdata[num_row][1])
             x = int(rawdata[num_row][2])
             y = int(rawdata[num_row][3])
             image[x][y] = 1
@@ -78,8 +79,5 @@ for num in range(0,len(filelist)): # process all files in rawdata_dir
                     x_pixel_sum = 0
                     y_pixel_sum = 0
                     num_pixel = 0
-                    f(x,y)
-                    num_pixel = 1
-                    result.write(str(x_pixel_sum / num_pixel) + ',' + str(y_pixel_sum / num_pixel) + '\n')
-                    
-            
+                    dfs(x,y)
+                    result.write(str(image_num) + ',' + str(current_time) + ',' + str(x_pixel_sum / num_pixel) + ',' + str(y_pixel_sum / num_pixel) + '\n')
