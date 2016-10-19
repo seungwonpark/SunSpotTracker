@@ -34,6 +34,7 @@ headers = {'User-agent': 'Python'}
 conn = httplib.HTTPConnection('sdo.gsfc.nasa.gov')
 lastdownloaded = 0
 
+k = 0
 while(k <= duration):
     try: # This enables us to try downloading again if temporary network error occurs.
         newdate = start_date + timedelta(k)
