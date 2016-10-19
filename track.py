@@ -41,7 +41,7 @@ halfheight = int(height/2)
 halfwidth = int(width/2)
 criterion = 40 # sunspot criterion
 
-filelist = os.listdir('images/')
+filelist = sorted(os.listdir('images/'))
 
 initial_date = date(1980,1,1) # Not related with any other julian day stuff!
 def filename_to_hour(filename):
