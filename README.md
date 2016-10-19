@@ -18,8 +18,8 @@ Time, latitude, and longitude will be written in `results.csv`.
 ## getdata.py
 
 + Based on Python 2.7.12.
-+ Usage : `python track.py startdate enddate hourgap`
-+ Example : `python track.py 20160129 20160203 4`
++ Usage : `python getdata.py startdate enddate hourgap`
++ Example : `python getdata.py 20160129 20160203 4`
 
 This will save images from [NASA Solar Dynamics Observatory](http://sdo.gsfc.nasa.gov) to `images/` directory. You can also select minimum time gap between images.
 
