@@ -34,23 +34,27 @@ headers = {'User-agent': 'Python'}
 conn = httplib.HTTPConnection('sdo.gsfc.nasa.gov')
 lastdownloaded = 0
 
-for k in range(0,duration+1):
-    newdate = start_date + timedelta(k)
-    directory = '/assets/img/browse/' + newdate.strftime('%Y') + '/' + newdate.strftime('%m') + '/' + newdate.strftime('%d') + '/'
-    print 'Parsing ' + directory + '...'
-    conn.request('GET', directory, '', headers)
-    resp = conn.getresponse()
-    html = resp.read()
-    html_split = html.split(target)
-    for i in range(1, len(html_split), 2):
-        filename = html_split[i].replace('">', '') + target
-        if(filename_to_hour(filename) - lastdownloaded > int(hourgap) - 0.1): # hour gap between downloading images
-            lastdownloaded = filename_to_hour(filename)
-            print 'Downloading ' + filename
-            conn.request('GET', directory + filename, '', headers)
-            resp = conn.getresponse()
-            image = resp.read()
-            f = open('images/' + filename, 'wb')
-            f.write(image)
-        else:
-            print 'Skipping ' + filename
+while(k <= duration):
+    try: # This enables us to try downloading again if temporary network error occurs.
+        newdate = start_date + timedelta(k)
+        directory = '/assets/img/browse/' + newdate.strftime('%Y') + '/' + newdate.strftime('%m') + '/' + newdate.strftime('%d') + '/'
+        print 'Parsing ' + directory + '...'
+        conn.request('GET', directory, '', headers)
+        resp = conn.getresponse()
+        html = resp.read()
+        html_split = html.split(target)
+        for i in range(1, len(html_split), 2):
+            filename = html_split[i].replace('">', '') + target
+            if(filename_to_hour(filename) - lastdownloaded > int(hourgap) - 0.1): # hour gap between downloading images
+                lastdownloaded = filename_to_hour(filename)
+                print 'Downloading ' + filename
+                conn.request('GET', directory + filename, '', headers)
+                resp = conn.getresponse()
+                image = resp.read()
+                f = open('images/' + filename, 'wb')
+                f.write(image)
+            else:
+                print 'Skipping ' + filename
+        k += 1
+    except: # TODO : I can't remember the error name... Can anyone tell me?
+        print('Temporary downloading error.')

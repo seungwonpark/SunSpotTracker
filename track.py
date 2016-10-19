@@ -66,6 +66,9 @@ if(bool_raw == 0):
 else:
     savefile = open('results/results-raw_' + filelist[0] + '_' + filelist[len(filelist)-1] + '.csv', 'a') # append
 
+write_indexerror = open('ErrorList/IndexErrorList.txt', 'a')
+write_unexperror = open('ErrorList/UnexpectedErrorList.txt', 'a')
+
 # Calculation of latitude and longitude of sunspot on sun
 def latitude(x):
     return math.asin( (halfheight - x) / radius_real )
@@ -82,36 +85,48 @@ boundary = (X - halfheight) ** 2 + (Y - halfwidth) ** 2 > radius_real ** 2
 
 # Track
 for num in range(0,len(filelist)):
-    print ('Parsing ' + 'images/' + filelist[num] + '...')
-    f = scipy.ndimage.imread( 'images/' + filelist[num] )
-    day.append(filename_to_hour(filelist[num]))
-    time = day[num] - day[0] # Elapsed time since first picture
-    
-    # Remove dark background
-    f[boundary] = 255
-    
-    # Center line : vertical / horizontal
-    for i in range(0, height):
-        f[i, halfwidth] = 255
-    for i in range(0, width):
-        f[halfheight, i] = 255
-    
-    # Classify sunspot coordinates in image.
-    for i in range(0, height):
-        for j in range(0, width):
-            if(f[i,j] < criterion):
-                if(bool_raw == 0):
-                    savefile.write(str(num) + ',' + str(format(time, '.1f')) + ',' + str(latitude(i)) + ',' + str(longitude(i,j)) + ',' + str(f[i,j]) + '\n')
-                else:
-                    savefile.write(str(num) + ',' + str(format(time, '.1f')) + ',' + str(i) + ',' + str(j) + ',' + str(f[i,j]) + '\n')
-    if(bool_plot == 1):
-        # Plot image
-        plt.title(filelist[num])
-        plt.xlabel('X coordinates')
-        plt.ylabel('Y coordinates')
-        plt.imshow(f)
-        plt.show()
-        plt.pause(0.0001)
+    try:
+        print ('Parsing ' + 'images/' + filelist[num] + '...')
+        f = scipy.ndimage.imread( 'images/' + filelist[num] )
+        day.append(filename_to_hour(filelist[num]))
+        time = day[num] - day[0] # Elapsed time since first picture
+        
+        # Remove dark background
+        f[boundary] = 255
+        
+        # Center line : vertical / horizontal
+        for i in range(0, height):
+            f[i, halfwidth] = 255
+        for i in range(0, width):
+            f[halfheight, i] = 255
+        
+        # Classify sunspot coordinates in image.
+        for i in range(0, height):
+            for j in range(0, width):
+                if(f[i,j] < criterion):
+                    if(bool_raw == 0):
+                        savefile.write(str(num) + ',' + str(format(time, '.1f')) + ',' + str(latitude(i)) + ',' + str(longitude(i,j)) + ',' + str(f[i,j]) + '\n')
+                    else:
+                        savefile.write(str(num) + ',' + str(format(time, '.1f')) + ',' + str(i) + ',' + str(j) + ',' + str(f[i,j]) + '\n')
+        if(bool_plot == 1):
+            # Plot image
+            plt.title(filelist[num])
+            plt.xlabel('X coordinates')
+            plt.ylabel('Y coordinates')
+            plt.imshow(f)
+            plt.show()
+            plt.pause(0.0001)
+    except IndexError:
+        print('IndexError had occured. This image name is saved to ErrorList/IndexErrorList.txt.')
+        print('Skipping ' + filelist[num] + '...')
+        write_indexerror.write(filelist[num] + '\n')
+    except MemoryError:
+        print('MemoryError had occured. Exiting...')
+        break
+    except:
+        print('Unexpected error had occured. This image name is saved to ErrorList/UnexpectedErrorList.txt.')
+        print('Skipping ' + filelist[num] + '...')
+        write_unexperror.write(filelist[num] + '\n')
 
 if(bool_plot == 1):
     plt.close()
