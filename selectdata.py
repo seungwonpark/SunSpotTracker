@@ -8,11 +8,12 @@ rawdata_dir = 'rawdata_to_select/'
 selected_dir = 'selected/'
 filelist = os.listdir(rawdata_dir)
 
+# 2D array declaration
 rawdata = []
 zerorow = []
 image = []
-size = 1024
 
+size = 1024
 height = 1024
 width = 1024
 # radius_cut is used for removing dark background - so as to classify sunspots.
@@ -28,14 +29,16 @@ def latitude(x):
 def longitude(x,y):
     return math.asin( (y - halfwidth) / (radius_real * math.cos(latitude(x))) )
 
-# DFS range. Need to determine this taxi radius.
+#######################################################
+#### DFS range. Need to determine this taxi radius.####
 dx = [0,1,1,1,0,-1,-1,-1]
 dy = [1,1,0,-1,-1,-1,0,1]
+#######################################################
 
+# temporary variables
 x_pixel_sum = 0
 y_pixel_sum = 0
 num_pixel = 0
-
 total_num_of_row = 0
 
 def dfs(x,y): # DFS(Depth First Search)
@@ -47,7 +50,7 @@ def dfs(x,y): # DFS(Depth First Search)
     y_pixel_sum += y
     
     num_pixel += 1
-    for i in range(0,8):
+    for i in range(0,len(dx)):
         if(image[x+dx[i]][y+dy[i]] == 1):
             dfs(x+dx[i],y+dy[i])
     
@@ -65,17 +68,10 @@ for num in range(0,len(filelist)): # process all files in rawdata_dir
     total_num_of_image = int(rawdata[len(rawdata)-1][0]) + 1
     print('Total ' + str(total_num_of_image) + ' images detected.')
     
-    # to make zero array
-    #for i in range(0,size):
-    #    zerorow.append(0)
-    
     num_row = 0
     for image_num in range(0,total_num_of_image):
         print('Image ' + str(image_num) + '...')
         
-        # Make zero(blank) array
-        #for i in range(0,size):
-        #    image.append(zerorow)
         image = [[0 for a in range(size)] for b in range(size)]
         
         # Make image array to perform DFS
