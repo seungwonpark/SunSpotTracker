@@ -124,7 +124,7 @@ for num in range(0,len(filelist)):
         write_indexerror.write(filelist[num] + '\n')
     except MemoryError:
         print('MemoryError had occured. Exiting...')
-        write_memorerror.write(strftime("%Y-%m-%d %H:%M:%S"))
+        write_memorerror.write(strftime("%Y-%m-%d %H:%M:%S") + '\n')
         break
     except:
         print('Unexpected error had occured. This image name is saved to ErrorList/UnexpectedErrorList.txt.')
