@@ -8,6 +8,7 @@ rawdata_selected/
 
 # Results
 results/
+selected/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
