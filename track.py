@@ -28,6 +28,7 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 from datetime import date
+from time import strftime
 
 
 height = 1024
@@ -67,6 +68,7 @@ else:
     savefile = open('results/results-raw_' + filelist[0] + '_' + filelist[len(filelist)-1] + '.csv', 'a') # append
 
 write_indexerror = open('ErrorList/IndexErrorList.txt', 'a')
+write_memorerror = open('ErrorList/MemoryErrorList.txt', 'a')
 write_unexperror = open('ErrorList/UnexpectedErrorList.txt', 'a')
 
 # Calculation of latitude and longitude of sunspot on sun
@@ -122,6 +124,7 @@ for num in range(0,len(filelist)):
         write_indexerror.write(filelist[num] + '\n')
     except MemoryError:
         print('MemoryError had occured. Exiting...')
+        write_memorerror.write(strftime("%Y-%m-%d %H:%M:%S"))
         break
     except:
         print('Unexpected error had occured. This image name is saved to ErrorList/UnexpectedErrorList.txt.')
