@@ -101,9 +101,9 @@ for num in range(0,len(filelist)):
         for j in range(0, width):
             if(f[i,j] < criterion):
                 if(bool_raw == 0):
-                    savefile.write(str(num) + ',' + str(time) + ',' + str(latitude(i)) + ',' + str(longitude(i,j)) + ',' + str(f[i,j]) + '\n')
+                    savefile.write(str(num) + ',' + str(format(time, '.1f')) + ',' + str(latitude(i)) + ',' + str(longitude(i,j)) + ',' + str(f[i,j]) + '\n')
                 else:
-                    savefile.write(str(num) + ',' + str(time) + ',' + str(i) + ',' + str(j) + ',' + str(f[i,j]) + '\n')
+                    savefile.write(str(num) + ',' + str(format(time, '.1f')) + ',' + str(i) + ',' + str(j) + ',' + str(f[i,j]) + '\n')
     if(bool_plot == 1):
         # Plot image
         plt.title(filelist[num])

@@ -81,4 +81,4 @@ for num in range(0,len(filelist)): # process all files in rawdata_dir
                     y_pixel_sum = 0
                     num_pixel = 0
                     dfs(a,b)
-                    result.write(str(image_num) + ',' + str(current_time) + ',' + str(x_pixel_sum / num_pixel) + ',' + str(y_pixel_sum / num_pixel) + '\n')
+                    result.write(str(image_num) + ',' + str(current_time) + ',' + str(format(x_pixel_sum / num_pixel, '.1f')) + ',' + str(format(y_pixel_sum / num_pixel, '.1f')) + '\n')
