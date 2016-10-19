@@ -31,6 +31,7 @@ def dfs(x,y): # DFS(Depth First Search)
     image[x][y] = -1 # mark as already visited.
     x_pixel_sum += x
     y_pixel_sum += y
+    
     num_pixel += 1
     for i in range(0,8):
         if(image[x+dx[i]][y+dy[i]] == 1):
@@ -46,38 +47,38 @@ for num in range(0,len(filelist)): # process all files in rawdata_dir
         rawdata.append(row)
         total_num_of_row += 1
     f.close()
-    
-    #for row_num in range(len(rawdata)):
-    #    print(rawdata[row_num])
-    
-    # Instead of using data[image_num], why don't we just process and print without saving?
-    
     total_num_of_image = int(rawdata[len(rawdata)-1][0]) + 1
     print('Total ' + str(total_num_of_image) + ' images detected.')
     
     # to make zero array
-    for i in range(0,size):
-        zerorow.append(0)
+    #for i in range(0,size):
+    #    zerorow.append(0)
     
     num_row = 0
     for image_num in range(0,total_num_of_image):
         print('Image ' + str(image_num) + '...')
-        for i in range(0,size):
-            image.append(zerorow)
+        
+        # Make zero(blank) array
+        #for i in range(0,size):
+        #    image.append(zerorow)
+        image = [[0 for a in range(size)] for b in range(size)]
+        
+        # Make image array to perform DFS
         while(int(rawdata[num_row][0]) == image_num):
-            current_time = int(rawdata[num_row][1])
+            current_time = float(rawdata[num_row][1])
             x = int(rawdata[num_row][2])
             y = int(rawdata[num_row][3])
             image[x][y] = 1
             num_row += 1
             if(num_row == total_num_of_row):
                 break
+        
         print('DFS...')
-        for x in range(0,size):
-            for y in range(0,size):
-                if(image[x][y] == 1):
+        for a in range(0,size):
+            for b in range(0,size):
+                if(image[a][b] == 1):
                     x_pixel_sum = 0
                     y_pixel_sum = 0
                     num_pixel = 0
-                    dfs(x,y)
+                    dfs(a,b)
                     result.write(str(image_num) + ',' + str(current_time) + ',' + str(x_pixel_sum / num_pixel) + ',' + str(y_pixel_sum / num_pixel) + '\n')
