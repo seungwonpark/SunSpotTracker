@@ -10,11 +10,11 @@ Sunspots tracking tool based on python. `track.py`, `getdata.py`, and `selectdat
 + Recommended default usage : `python track.py 1 0`
 + If you don't want to use plot utility, then `python track.py 0 0`.
 + If you want to parse data as raw coordinates, tehn `python track.py 0 1`. Rawdata files are needed for using `selectdata.py`.
++ Results are written to `results/` directory.
 + Ignore the matplotlib DeprecationError.
 
 Time, latitude, and longitude will be written in `results.csv`.
 In `track.py`, each pixels of sunspot aren't abstracted to one point. If you want to use such utility, make rawdata files and use `selectdata.py`.
-
 
 
 ## getdata.py
