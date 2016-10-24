@@ -60,8 +60,8 @@ def dfs(x,y): # DFS(Depth First Search)
 for num in range(0,len(filelist)): # process all files in rawdata_dir
     print ('Processing ' + filelist[num] + '...')
     f = open(rawdata_dir + filelist[num], 'r')
-    result_raw = open(selected_dir + 'selected-raw_' + filelist[0], 'w')
-    result = open(selected_dir + 'selected_' + filelist[0], 'w')
+    result_raw = open(selected_dir + 'selected-raw_' + filelist[num], 'w')
+    result = open(selected_dir + 'selected_' + filelist[num], 'w')
     csvReader = csv.reader(f)
     for row in csvReader:
         rawdata.append(row)
@@ -100,8 +100,8 @@ for num in range(0,len(filelist)): # process all files in rawdata_dir
                         latit = latitude(x_average)
                         longi = longitude(x_average, y_average)
                         
-                        result_raw.write(str(image_num) + ',' + str(current_time) + ',' + str(format(x_average, '.1f')) + ',' + str(format(y_average, '.1f')) + '\n')
-                        result.write(str(image_num) + ',' + str(current_time) + ',' + str(format(latit, '.1f')) + ',' + str(format(longi, '.1f')) + '\n')
+                        result_raw.write(str(image_num) + ',' + str(current_time) + ',' + str(format(x_average, '.3f')) + ',' + str(format(y_average, '.3f')) + '\n')
+                        result.write(str(image_num) + ',' + str(current_time) + ',' + str(format(latit, '.3f')) + ',' + str(format(longi, '.3f')) + '\n')
         except RecursionError:
             print('RecursionError had occured. This image number is saved to ErrorList/RecursionError.txt.')
             write_recurerror.write('Image No.' + str(image_num) + ' of file ' + filelist[num] + '\n')
