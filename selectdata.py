@@ -109,3 +109,4 @@ for num in range(0,len(filelist)): # process all files in rawdata_dir
             print('Unexpected error had occured. This image name is saved to ErrorList/UnexpectedErrorList.txt.')
             print('Skipping Image No.' + str(image_num) + ' of file ' + filelist[num] + '...')
             write_unexperror.write('Image No.' + str(image_num) + ' of file ' + filelist[num] + '\n')
+// edit test by Kiehyun Park. 
