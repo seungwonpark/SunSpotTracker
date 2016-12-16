@@ -110,3 +110,4 @@ for num in range(0,len(filelist)): # process all files in rawdata_dir
             print('Skipping Image No.' + str(image_num) + ' of file ' + filelist[num] + '...')
             write_unexperror.write('Image No.' + str(image_num) + ' of file ' + filelist[num] + '\n')
 // edit test by Kiehyun Park. 
+// I can edit ... by Kiehyun Park.
