@@ -1,6 +1,6 @@
 # SunSpotTracker
 
-# IMPORTANT : Currently not working.
+# IMPORTANT : `getdata.py` Currently not working.
 
 Sunspots tracking tool based on python. `track.py`, `getdata.py`, and `selectdata.py`.
 
@@ -19,7 +19,7 @@ Time, latitude, and longitude will be written in `results.csv`.
 In `track.py`, each pixels of sunspot aren't abstracted to one point. If you want to use such utility, make rawdata files and use `selectdata.py`.
 
 
-## getdata.py
+## getdata.py : NOT WORKING
 
 + Based on Python2
 + Usage : `python getdata.py startdate enddate hourgap`
