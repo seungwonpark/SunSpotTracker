@@ -4,7 +4,7 @@ Sunspots tracking tool based on python. `track.py`, `getdata.py`, and `selectdat
 
 ## track.py
 
-+ Based on Python 3.5.2.
++ Based on Python3
 + Requires scipy, numpy, and matplotlib. I recommend to use [Anaconda](https://www.continuum.io/downloads).
 + First, place the images that you want to track at `images/` directory.
 + Recommended default usage : `python track.py 1 0`
@@ -19,7 +19,7 @@ In `track.py`, each pixels of sunspot aren't abstracted to one point. If you wan
 
 ## getdata.py
 
-+ Based on Python 2.7.12.
++ Based on Python2
 + Usage : `python getdata.py startdate enddate hourgap`
 + Example : `python getdata.py 20160129 20160203 4`
 + This will save images from [NASA Solar Dynamics Observatory](http://sdo.gsfc.nasa.gov) to `images/` directory. You can also select minimum time gap between images.
@@ -31,7 +31,7 @@ In `track.py`, each pixels of sunspot aren't abstracted to one point. If you wan
 
 ## selectdata.py
 
-+ Baseed on Python 3.5.2.
++ Based on Python3
 + First, place the rawdata `*.csv` files to `rawdata_to_select/` directory. (You can put multiple files!)
 + Then, dfs-processed data will be written to `selected/` directory.
 
