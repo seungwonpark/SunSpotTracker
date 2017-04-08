@@ -1,5 +1,7 @@
 # SunSpotTracker
 
+# IMPORTANT : Currently not working.
+
 Sunspots tracking tool based on python. `track.py`, `getdata.py`, and `selectdata.py`.
 
 ## track.py

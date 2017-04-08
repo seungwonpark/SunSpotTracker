@@ -43,6 +43,7 @@ while(k <= duration):
         conn.request('GET', directory, '', headers)
         resp = conn.getresponse()
         html = resp.read()
+        print(html)
         html_split = html.split(target)
         for i in range(1, len(html_split), 2):
             filename = html_split[i].replace('">', '') + target
