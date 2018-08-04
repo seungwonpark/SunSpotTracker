@@ -10,13 +10,12 @@ from datetime import date, timedelta
 import urllib.request
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+from sys import argv
+script, starttime, endtime, hourgap = argv # Input : starttime, endtime in '20160901'-like format
 
-#from sys import argv
-#script, starttime, endtime, hourgap = argv # Input : starttime, endtime in '20160901'-like format
-
-starttime = '20170101'
-endtime = '20170228'
-hourgap = '6'
+#starttime = '20170101'
+#endtime = '20170228'
+#hourgap = '6'
 
 start_t = time.strptime(starttime, '%Y%m%d')
 end_t = time.strptime(endtime, '%Y%m%d')
