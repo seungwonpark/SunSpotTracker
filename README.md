@@ -1,8 +1,9 @@
 # SunSpotTracker
 
-# IMPORTANT : `getdata.py` Currently not working.
+# IMPORTANT : `getdata.py` Currently not working., `getdata_bs.py` is created.
 
-Sunspots tracking tool based on python. `track.py`, `getdata.py`, and `selectdata.py`.
+
+Sunspots tracking tool based on python. `track.py`, `getdata_bs.py`, and `selectdata.py`.
 
 ## track.py
 
@@ -19,10 +20,11 @@ Time, latitude, and longitude will be written in `results.csv`.
 In `track.py`, each pixels of sunspot aren't abstracted to one point. If you want to use such utility, make rawdata files and use `selectdata.py`.
 
 
-## getdata.py : NOT WORKING
+## getdata_bs.py : NOT WORKING
 
-+ Based on Python2
-+ Usage : `python getdata.py startdate enddate hourgap`
++ Based on Python3
++ Requires BeautifulSoup. I recommend to use [Anaconda](https://www.continuum.io/downloads).
++ Usage : `python getdata_bs.py startdate enddate hourgap`
 + Example : `python getdata.py 20160129 20160203 4`
 + This will save images from [NASA Solar Dynamics Observatory](http://sdo.gsfc.nasa.gov) to `images/` directory. You can also select minimum time gap between images.
 + Please refer to [Data Rights and Rules for Data Use](http://sdo.gsfc.nasa.gov/data/rules.php) and attribute as :
