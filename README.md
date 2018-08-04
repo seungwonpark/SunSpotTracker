@@ -1,6 +1,6 @@
 # SunSpotTracker
 
-# IMPORTANT : `getdata.py` Currently not working., `getdata_bs.py` is created.
+# IMPORTANT : `getdata.py` Currently not working., Please use `getdata_bs.py`.
 
 
 Sunspots tracking tool based on python. `track.py`, `getdata_bs.py`, and `selectdata.py`.
