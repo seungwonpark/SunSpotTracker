@@ -20,7 +20,7 @@ Time, latitude, and longitude will be written in `results.csv`.
 In `track.py`, each pixels of sunspot aren't abstracted to one point. If you want to use such utility, make rawdata files and use `selectdata.py`.
 
 
-## getdata_bs.py : NOT WORKING
+## getdata_bs.py : New version of getdata.py
 
 + Based on Python3
 + Requires BeautifulSoup. I recommend to use [Anaconda](https://www.continuum.io/downloads).
